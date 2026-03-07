@@ -3,7 +3,7 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 
-const APK_URL = "https://github.com/mdhimasandrian13-ctrl/Soul-Save/releases/download/v1.0.0/app-release.apk"
+const APK_URL = "https://www.mediafire.com/file/tdb1i6wjscwq8ho/app-release.apk/file"
 const GITHUB_URL = "https://github.com/mdhimasandrian13-ctrl/Soul-Save"
 
 export default function Download() {
@@ -61,7 +61,8 @@ export default function Download() {
         }}>
           <motion.a
             href={APK_URL}
-            download="SoulSave.apk"
+            target="_blank"
+            rel="noreferrer"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
             style={{
