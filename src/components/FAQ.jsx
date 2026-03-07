@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import useWindowSize from '../hooks/useWindowSize'
 
 const faqs = [
   { q: 'Apakah Soul Save gratis?', a: 'Ya! Soul Save 100% gratis tanpa biaya apapun. Tidak ada iklan, tidak ada pembelian dalam aplikasi, dan tidak ada langganan.' },
@@ -16,6 +17,7 @@ function FAQItem({ faq, index }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const { isMobile } = useWindowSize()
 
   return (
     <motion.div
@@ -33,10 +35,12 @@ function FAQItem({ faq, index }) {
         onClick={() => setOpen(!open)}
         style={{
           width: '100%', background: 'none', border: 'none',
-          padding: '20px 24px', textAlign: 'left',
-          fontFamily: 'Plus Jakarta Sans', fontSize: 15, fontWeight: 600,
+          padding: isMobile ? '16px 18px' : '20px 24px',
+          textAlign: 'left', fontFamily: 'Plus Jakarta Sans',
+          fontSize: isMobile ? 14 : 15, fontWeight: 600,
           color: 'var(--dark)', cursor: 'pointer',
-          display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16
+          display: 'flex', justifyContent: 'space-between',
+          alignItems: 'center', gap: 16
         }}
       >
         {faq.q}
@@ -57,8 +61,9 @@ function FAQItem({ faq, index }) {
             style={{ overflow: 'hidden' }}
           >
             <div style={{
-              padding: '0 24px 20px',
-              fontSize: 14, color: 'var(--mid)', lineHeight: 1.7
+              padding: isMobile ? '0 18px 16px' : '0 24px 20px',
+              fontSize: isMobile ? 13 : 14,
+              color: 'var(--mid)', lineHeight: 1.7
             }}>
               {faq.a}
             </div>
@@ -72,22 +77,23 @@ function FAQItem({ faq, index }) {
 export default function FAQ() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const { isMobile } = useWindowSize()
 
   return (
-    <section id="faq" style={{ padding: '100px 40px', background: 'white' }}>
+    <section id="faq" style={{ padding: isMobile ? '60px 20px' : '100px 40px', background: 'white' }}>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        style={{ textAlign: 'center', marginBottom: 60 }}
+        style={{ textAlign: 'center', marginBottom: 48 }}
       >
         <div style={{
           display: 'inline-block', background: 'var(--teal-light)', color: 'var(--teal-dark)',
           padding: '6px 16px', borderRadius: 50, fontSize: 12, fontWeight: 700,
           marginBottom: 16, letterSpacing: 1, textTransform: 'uppercase'
         }}>❓ FAQ</div>
-        <h2 style={{ fontFamily: 'Clash Display', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 700 }}>
+        <h2 style={{ fontFamily: 'Clash Display', fontSize: isMobile ? 28 : 'clamp(32px,4vw,48px)', fontWeight: 700 }}>
           Pertanyaan Umum
         </h2>
       </motion.div>

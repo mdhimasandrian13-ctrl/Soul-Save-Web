@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import useWindowSize from '../hooks/useWindowSize'
 
 const features = [
   { icon: '🐷', title: 'Multi Celengan', desc: 'Buat banyak celengan sekaligus untuk berbagai tujuan — liburan, gadget, pendidikan, dan lainnya.' },
@@ -26,15 +27,15 @@ function FeatureCard({ feature, index }) {
       transition={{ duration: 0.5, delay: index * 0.08 }}
       whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(46,196,160,0.12)' }}
       style={{
-        background: 'var(--cream)', borderRadius: 24, padding: 32,
+        background: 'var(--cream)', borderRadius: 24, padding: 28,
         border: '2px solid transparent', transition: 'border-color 0.3s',
         cursor: 'default'
       }}
       onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--teal-light)'}
       onMouseLeave={e => e.currentTarget.style.borderColor = 'transparent'}
     >
-      <span style={{ fontSize: 40, marginBottom: 16, display: 'block' }}>{feature.icon}</span>
-      <div style={{ fontFamily: 'Clash Display', fontSize: 20, fontWeight: 600, marginBottom: 10 }}>{feature.title}</div>
+      <span style={{ fontSize: 36, marginBottom: 14, display: 'block' }}>{feature.icon}</span>
+      <div style={{ fontFamily: 'Clash Display', fontSize: 18, fontWeight: 600, marginBottom: 8 }}>{feature.title}</div>
       <p style={{ fontSize: 14, color: 'var(--mid)', lineHeight: 1.7 }}>{feature.desc}</p>
     </motion.div>
   )
@@ -43,32 +44,35 @@ function FeatureCard({ feature, index }) {
 export default function Features() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const { isMobile, isTablet } = useWindowSize()
+
+  const cols = isMobile ? '1fr' : isTablet ? 'repeat(2,1fr)' : 'repeat(3,1fr)'
 
   return (
-    <section id="fitur" style={{ padding: '100px 40px', background: 'white' }}>
+    <section id="fitur" style={{ padding: isMobile ? '60px 20px' : '100px 40px', background: 'white' }}>
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.6 }}
-        style={{ textAlign: 'center', marginBottom: 60 }}
+        style={{ textAlign: 'center', marginBottom: 48 }}
       >
         <div style={{
           display: 'inline-block', background: 'var(--teal-light)', color: 'var(--teal-dark)',
           padding: '6px 16px', borderRadius: 50, fontSize: 12, fontWeight: 700,
           marginBottom: 16, letterSpacing: 1, textTransform: 'uppercase'
         }}>✨ Fitur</div>
-        <h2 style={{ fontFamily: 'Clash Display', fontSize: 'clamp(32px,4vw,48px)', fontWeight: 700, marginBottom: 16 }}>
+        <h2 style={{ fontFamily: 'Clash Display', fontSize: isMobile ? 28 : 'clamp(32px,4vw,48px)', fontWeight: 700, marginBottom: 16 }}>
           Semua yang Kamu Butuhkan
         </h2>
-        <p style={{ fontSize: 17, color: 'var(--mid)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
+        <p style={{ fontSize: isMobile ? 14 : 17, color: 'var(--mid)', maxWidth: 560, margin: '0 auto', lineHeight: 1.7 }}>
           Soul Save dirancang untuk memudahkan kamu menabung dengan cara yang menyenangkan dan efektif.
         </p>
       </motion.div>
 
       <div style={{
         maxWidth: 1200, margin: '0 auto',
-        display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24
+        display: 'grid', gridTemplateColumns: cols, gap: 20
       }}>
         {features.map((f, i) => <FeatureCard key={f.title} feature={f} index={i} />)}
       </div>

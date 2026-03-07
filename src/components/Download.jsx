@@ -1,18 +1,19 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import useWindowSize from '../hooks/useWindowSize'
 
 export default function Download() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const { isMobile } = useWindowSize()
 
   return (
     <section id="download" style={{
-      padding: '100px 40px',
+      padding: isMobile ? '60px 20px' : '100px 40px',
       background: 'linear-gradient(135deg, var(--dark) 0%, #2A2A4E 100%)',
       textAlign: 'center', position: 'relative', overflow: 'hidden'
     }}>
-      {/* Background glow */}
       <div style={{
         position: 'absolute', top: -200, left: '50%',
         transform: 'translateX(-50%)',
@@ -31,38 +32,44 @@ export default function Download() {
         <motion.span
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          style={{ fontSize: 72, display: 'block', marginBottom: 24 }}
+          style={{ fontSize: isMobile ? 56 : 72, display: 'block', marginBottom: 24 }}
         >🐷</motion.span>
 
         <h2 style={{
           fontFamily: 'Clash Display',
-          fontSize: 'clamp(32px,4vw,48px)',
+          fontSize: isMobile ? 28 : 'clamp(32px,4vw,48px)',
           fontWeight: 700, color: 'white', marginBottom: 16
         }}>
           Mulai Menabung Sekarang!
         </h2>
 
         <p style={{
-          fontSize: 17, color: 'rgba(255,255,255,0.6)',
+          fontSize: isMobile ? 14 : 17,
+          color: 'rgba(255,255,255,0.6)',
           marginBottom: 40, lineHeight: 1.7
         }}>
           Download Soul Save gratis dan mulai perjalanan menabungmu hari ini.
           Tidak perlu akun, tidak perlu internet.
         </p>
 
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{
+          display: 'flex', gap: 16,
+          justifyContent: 'center', flexWrap: 'wrap'
+        }}>
           <motion.a
             href="https://github.com/mdhimasandrian13-ctrl/Soul-Save/releases"
             target="_blank"
             rel="noreferrer"
-            whileHover={{ y: -2, boxShadow: '0 12px 35px rgba(46,196,160,0.5)' }}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: 'var(--teal)', color: 'white',
-              padding: '18px 36px', borderRadius: 50,
-              fontSize: 16, fontWeight: 700, textDecoration: 'none',
+              padding: isMobile ? '14px 28px' : '18px 36px',
+              borderRadius: 50,
+              fontSize: isMobile ? 14 : 16,
+              fontWeight: 700, textDecoration: 'none',
               boxShadow: '0 8px 25px rgba(46,196,160,0.4)',
-              transition: 'all 0.2s'
             }}
           >
             📱 Download APK
@@ -72,14 +79,16 @@ export default function Download() {
             href="https://github.com/mdhimasandrian13-ctrl/Soul-Save"
             target="_blank"
             rel="noreferrer"
-            whileHover={{ y: -2, background: 'rgba(255,255,255,0.15)' }}
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.97 }}
             style={{
               display: 'inline-flex', alignItems: 'center', gap: 10,
               background: 'rgba(255,255,255,0.1)', color: 'white',
-              padding: '18px 36px', borderRadius: 50,
-              fontSize: 16, fontWeight: 600, textDecoration: 'none',
+              padding: isMobile ? '14px 28px' : '18px 36px',
+              borderRadius: 50,
+              fontSize: isMobile ? 14 : 16,
+              fontWeight: 600, textDecoration: 'none',
               border: '2px solid rgba(255,255,255,0.2)',
-              transition: 'all 0.2s'
             }}
           >
             💻 GitHub

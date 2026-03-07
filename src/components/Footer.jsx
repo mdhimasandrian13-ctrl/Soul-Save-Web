@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
+import useWindowSize from '../hooks/useWindowSize'
 
 export default function Footer() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
+  const { isMobile } = useWindowSize()
 
   return (
     <footer style={{
-      background: 'var(--dark)', padding: '48px 40px',
+      background: 'var(--dark)',
+      padding: isMobile ? '36px 20px' : '48px 40px',
       textAlign: 'center'
     }}>
       <motion.div
@@ -18,16 +21,21 @@ export default function Footer() {
         transition={{ duration: 0.6 }}
       >
         <div style={{
-          fontFamily: 'Clash Display', fontSize: 24,
+          fontFamily: 'Clash Display', fontSize: isMobile ? 20 : 24,
           fontWeight: 700, color: 'white', marginBottom: 8
         }}>
           🐷 Soul<span style={{ color: 'var(--teal)' }}>Save</span>
         </div>
-        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 14, marginBottom: 16 }}>
+
+        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 14, marginBottom: 24 }}>
           Celengan digital untuk semua impianmu
         </p>
 
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginBottom: 24 }}>
+        <div style={{
+          display: 'flex', justifyContent: 'center',
+          flexWrap: 'wrap', gap: isMobile ? 16 : 24,
+          marginBottom: 24
+        }}>
           {[
             { label: 'Fitur', href: '#fitur' },
             { label: 'Screenshot', href: '#screenshot' },
