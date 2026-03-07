@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import useWindowSize from '../hooks/useWindowSize'
 
+const APK_URL = "https://github.com/mdhimasandrian13-ctrl/Soul-Save/releases/download/v1.0.0/app-release.apk"
+
 const fadeDown = (delay = 0) => ({
   initial: { opacity: 0, y: -20 },
   animate: { opacity: 1, y: 0 },
@@ -76,7 +78,7 @@ export default function Hero() {
             display: 'flex', gap: 16, flexWrap: 'wrap',
             justifyContent: isMobile ? 'center' : 'flex-start'
           }}>
-            <a href="#download" style={{
+            <a href={APK_URL} download="SoulSave.apk" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'var(--teal)', color: 'white',
               padding: isMobile ? '14px 24px' : '16px 32px',

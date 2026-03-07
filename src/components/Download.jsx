@@ -3,6 +3,9 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 
+const APK_URL = "https://github.com/mdhimasandrian13-ctrl/Soul-Save/releases/download/v1.0.0/app-release.apk"
+const GITHUB_URL = "https://github.com/mdhimasandrian13-ctrl/Soul-Save"
+
 export default function Download() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true })
@@ -57,9 +60,8 @@ export default function Download() {
           justifyContent: 'center', flexWrap: 'wrap'
         }}>
           <motion.a
-            href="https://github.com/mdhimasandrian13-ctrl/Soul-Save/releases"
-            target="_blank"
-            rel="noreferrer"
+            href={APK_URL}
+            download="SoulSave.apk"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
             style={{
@@ -76,7 +78,7 @@ export default function Download() {
           </motion.a>
 
           <motion.a
-            href="https://github.com/mdhimasandrian13-ctrl/Soul-Save"
+            href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
             whileHover={{ y: -2 }}
@@ -101,7 +103,7 @@ export default function Download() {
           padding: '6px 14px', borderRadius: 50,
           fontSize: 12, fontWeight: 600, marginTop: 24
         }}>
-          v1.0.0 • Android
+          v1.0.0 • Android • 49.5 MB
         </div>
       </motion.div>
     </section>
