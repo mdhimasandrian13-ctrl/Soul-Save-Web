@@ -1,0 +1,35 @@
+@import '@fontsource/plus-jakarta-sans/300.css';
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --teal: #2EC4A0;
+  --teal-dark: #1FA085;
+  --teal-light: #D6F5EE;
+  --cream: #FDF6ED;
+  --dark: #1A1A2E;
+  --mid: #4A4A6A;
+  --soft: #8888AA;
+  --orange: #FF8C42;
+  --gold: #F4C542;
+  --purple: #6C63FF;
+  --red: #FF6B6B;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Clash Display', sans-serif;
+}
