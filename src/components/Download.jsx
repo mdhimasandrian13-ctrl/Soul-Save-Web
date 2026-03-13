@@ -3,7 +3,7 @@ import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import useWindowSize from '../hooks/useWindowSize'
 
-const APK_URL = "https://www.mediafire.com/file/tdb1i6wjscwq8ho/app-release.apk/file"
+const APK_URL = "https://www.mediafire.com/file/yq7ercl28k6ytrd/Soul+Save.apk/file"
 const GITHUB_URL = "https://github.com/mdhimasandrian13-ctrl/Soul-Save"
 
 export default function Download() {

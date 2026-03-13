@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion'
 import useWindowSize from '../hooks/useWindowSize'
 
-const APK_URL = "https://www.mediafire.com/file/tdb1i6wjscwq8ho/app-release.apk/file"
-
+const APK_URL = "https://www.mediafire.com/file/yq7ercl28k6ytrd/Soul+Save.apk/file"
 const fadeDown = (delay = 0) => ({
   initial: { opacity: 0, y: -20 },
   animate: { opacity: 1, y: 0 },
